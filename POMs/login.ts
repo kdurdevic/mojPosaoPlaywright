@@ -1,4 +1,4 @@
-import { expect, Locator, Page } from "@playwright/test";
+import { expect, FrameLocator, Locator, Page } from "@playwright/test";
 
 export class LoginPage {
     readonly page: Page
@@ -12,6 +12,8 @@ export class LoginPage {
     readonly emptyEmailError: Locator;
     readonly emptyPasswordError: Locator;
 
+    readonly iframe: FrameLocator;
+    readonly closeButtonInIframe: Locator;
 
 constructor(page: Page){
     this.page = page;
@@ -25,10 +27,27 @@ constructor(page: Page){
     this.emptyEmailError = page.getByText('Obavezan unos');
     this.emptyPasswordError = page.getByText('Lozinka mora sadržavati minimalno 6 znakova');
 
+    this.iframe = page.frameLocator('iframe[title="Dijaloški okvir za prijavu putem Googlea"]');
+    this.closeButtonInIframe = this.iframe.locator('[aria-label="Zatvori"]');
+
 }
 
 async goto(url: string) {
     await this.page.goto(url);
+}
+
+async closeGoogleModalIfVisible(){
+    
+    try {
+        await this.closeButtonInIframe.waitFor({ state: 'visible', timeout: 5000 });
+        console.log('Close button is visible, attempting to click.');
+
+        await this.closeButtonInIframe.click({ force: true });
+        console.log('Modal closed');
+    } catch (error) {
+        console.log('Close button is not visible or modal didn’t appear');
+    }
+
 }
 
 async acceptCookies(){
