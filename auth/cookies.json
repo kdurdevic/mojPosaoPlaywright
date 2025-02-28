@@ -1,0 +1,161 @@
+{
+  "cookies": [
+    {
+      "name": "token",
+      "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzZXNzaW9uSWQiOiJjMjM3MDQxYS1mMjU2LTQzNWItYmQyYS1mOTIwMzgyYTUwZWQiLCJpYXQiOjE3NDA1Nzc2NjcsImV4cCI6MTc3NjU3NzY2N30.lP75eRusvQrnO19hz42Zu1zMeMB2jZGhklLB9Wgvwp4",
+      "domain": "mojposao.hr",
+      "path": "/",
+      "expires": 1772113667.796785,
+      "httpOnly": true,
+      "secure": false,
+      "sameSite": "Strict"
+    },
+    {
+      "name": "_gcl_au",
+      "value": "1.1.109771387.1740577668",
+      "domain": ".mojposao.hr",
+      "path": "/",
+      "expires": 1748353668,
+      "httpOnly": false,
+      "secure": false,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "_fbp",
+      "value": "fb.1.1740577668502.558697211185785146",
+      "domain": ".mojposao.hr",
+      "path": "/",
+      "expires": 1748353668,
+      "httpOnly": false,
+      "secure": false,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "__rtbh.uid",
+      "value": "%7B%22eventType%22%3A%22uid%22%2C%22id%22%3A%22undefined%22%2C%22expiryDate%22%3A%222026-02-26T13%3A47%3A48.505Z%22%7D",
+      "domain": "mojposao.hr",
+      "path": "/",
+      "expires": 1772113668,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "__rtbh.lid",
+      "value": "%7B%22eventType%22%3A%22lid%22%2C%22id%22%3A%22TipnGqb1f0PHZJ8RQPjm%22%2C%22expiryDate%22%3A%222026-02-26T13%3A47%3A48.505Z%22%7D",
+      "domain": "mojposao.hr",
+      "path": "/",
+      "expires": 1772113668,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "_ga_YXSMCZJGSK",
+      "value": "GS1.1.1740577668.1.0.1740577668.60.0.0",
+      "domain": ".mojposao.hr",
+      "path": "/",
+      "expires": 1775137668.527041,
+      "httpOnly": false,
+      "secure": false,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "_ga",
+      "value": "GA1.1.871010139.1740577669",
+      "domain": ".mojposao.hr",
+      "path": "/",
+      "expires": 1775137668.527224,
+      "httpOnly": false,
+      "secure": false,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "uid",
+      "value": "990ffcad-0f8d-467a-b4a4-888662033411",
+      "domain": ".criteo.com",
+      "path": "/",
+      "expires": 1774273668.708932,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "g",
+      "value": "Z1uvSLlefU6sFnfArfLU_1740577668761",
+      "domain": ".creativecdn.com",
+      "path": "/",
+      "expires": 1772113668.718172,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "c",
+      "value": "Z1uvSLlefU6sFnfArfLU_FOufLzFSk6906XnJjY9U_1740577668761",
+      "domain": ".creativecdn.com",
+      "path": "/",
+      "expires": 1772113668.718264,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "ts",
+      "value": "1740577668",
+      "domain": ".creativecdn.com",
+      "path": "/",
+      "expires": 1772113668.718293,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "ar_debug",
+      "value": "1",
+      "domain": ".creativecdn.com",
+      "path": "/",
+      "expires": 1772113668.801928,
+      "httpOnly": true,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "receive-cookie-deprecation",
+      "value": "1",
+      "domain": ".adnxs.com",
+      "path": "/",
+      "expires": 1775137669.011989,
+      "httpOnly": true,
+      "secure": true,
+      "sameSite": "None"
+    }
+  ],
+  "origins": [
+    {
+      "origin": "https://mojposao.hr",
+      "localStorage": [
+        {
+          "name": "lastExternalReferrer",
+          "value": "empty"
+        },
+        {
+          "name": "cookies-policy-accepted",
+          "value": "true"
+        },
+        {
+          "name": "lastExternalReferrerTime",
+          "value": "1740577668500"
+        },
+        {
+          "name": "__rtbh.lid",
+          "value": "{\"eventType\":\"lid\",\"id\":\"TipnGqb1f0PHZJ8RQPjm\",\"expiryDate\":\"2026-02-26T13:47:48.505Z\"}"
+        },
+        {
+          "name": "__rtbh.uid",
+          "value": "{\"eventType\":\"uid\",\"id\":\"undefined\",\"expiryDate\":\"2026-02-26T13:47:48.505Z\"}"
+        }
+      ]
+    }
+  ]
+}
