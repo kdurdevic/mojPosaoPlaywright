@@ -1,8 +1,9 @@
 import { Page } from "@playwright/test";
+import dotenv from "dotenv";
+dotenv.config();
 
 export class LoginEnvironments {
     page: Page;
-    baseUrl: string;
     validEmail: string;
     validPassword: string;
     invalidEmail: string;
@@ -10,10 +11,9 @@ export class LoginEnvironments {
 
     constructor(page: Page) {
         this.page = page;
-        this.baseUrl = 'https://mojposao.hr/';
-        this.validEmail = 'djuxdelux58@gmail.com'; // env varijable, ili preko terminala assignat, env role u kojem hardkodiraš
-        this.validPassword = 'Test12345!';
-        this.invalidEmail = "test@test.hr";
-        this.invalidPassword = "Test123";
+        this.validEmail = process.env.VALID_EMAIL || '';
+        this.validPassword = process.env.VALID_PASSWORD || '';
+        this.invalidEmail = process.env.INVALID_EMAIL || '';
+        this.invalidPassword = process.env.INVALID_PASSWORD || '';
     }
 }
