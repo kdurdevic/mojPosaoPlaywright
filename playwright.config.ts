@@ -1,5 +1,8 @@
 import { defineConfig, devices } from '@playwright/test';
 import fs from 'fs';
+import dotenv from "dotenv";
+dotenv.config();
+
 
 const storageStatePath = './auth/cookies.json';
 
@@ -10,22 +13,23 @@ export default defineConfig({
   retries: process.env.CI ? 2 : 0,
   workers: process.env.CI ? 1 : undefined,
   reporter: 'html',
-  globalSetup: require.resolve('./globalSetup.ts'), 
+  globalSetup: require.resolve('./globalSetup.ts'),
   use: {
-     baseURL: 'https://mojposao.hr/',
-     storageState: fs.existsSync(storageStatePath) ? storageStatePath : undefined,
-     headless: false,
+    baseURL: 'https://mojposao.hr/',
+    storageState: fs.existsSync(storageStatePath) ? storageStatePath : undefined,
+    headless: true,
     trace: 'on-first-retry',
   },
 
   projects: [
     {
       name: 'chromium',
-      use: { ...devices['Desktop Chrome'],
+      use: {
+        ...devices['Desktop Chrome'],
         viewport: {
-          width: 1920, height: 1080, 
+          width: 1920, height: 1080,
         },
-       },
+      },
     }
 
   ],
