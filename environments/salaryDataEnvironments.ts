@@ -4,13 +4,13 @@ export class SalaryDataEnvironments {
     page: Page;
     netSalary: string;
     grossSalary: string;
-    osijekOption: string;
+    specificLocation: string;
     numberOfKids: string;
     numberOfDependents: string;
 
     constructor(page: Page) {
         this.page = page;
-        this.osijekOption = 'Osijek';
+        this.specificLocation = 'Osijek';
         this.netSalary = '1500';
         this.grossSalary = '1875';
         this.numberOfKids = '3';

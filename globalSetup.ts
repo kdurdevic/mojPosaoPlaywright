@@ -6,6 +6,7 @@ import * as dotenv from 'dotenv';
 dotenv.config();
 
 async function globalSetup(config: FullConfig) {
+
     const browser = await chromium.launch();
     const context = await browser.newContext();
     const page = await context.newPage();
@@ -43,7 +44,6 @@ async function globalSetup(config: FullConfig) {
     const storageFilePath = path.join(storagePath, 'cookies.json');
     await context.storageState({ path: storageFilePath });
 
-    await browser.close();
 }
 
 export default globalSetup;

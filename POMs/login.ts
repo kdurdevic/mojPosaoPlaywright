@@ -1,5 +1,5 @@
+
 import { expect, Locator, Page } from "@playwright/test";
-import { navigateTo } from "../utils/navigation";
 import * as dotenv from 'dotenv';
 dotenv.config();
 
@@ -10,6 +10,7 @@ export class LoginPage {
     readonly passwordField: Locator;
     readonly continueButton: Locator;
     readonly usernameDisplayed: Locator;
+    readonly userAvatarIcon: Locator;
     readonly logoutButton: Locator;
     readonly errorMessage: Locator;
     readonly emptyEmailError: Locator;
@@ -17,10 +18,11 @@ export class LoginPage {
 
     constructor(page: Page) {
         this.page = page;
-        this.avatarIcon = page.locator('img[alt="avatar-site"]').nth(0);
+        this.avatarIcon = page.locator('[data-test="right-user-indicator"]');
         this.emailField = page.locator('[data-test="email"]');
         this.passwordField = page.locator('[data-test="password"]');
         this.continueButton = page.getByRole('button', { name: 'Nastavi' });
+        this.userAvatarIcon = page.getByRole('img', { name: 'avatar-site' });
         this.logoutButton = page.locator('[data-test="right-sidebar-logout"]');
         this.usernameDisplayed = page.getByText('Katarina');
         this.errorMessage = page.getByText('Neispravni podaci');
@@ -28,8 +30,12 @@ export class LoginPage {
         this.emptyPasswordError = page.getByText('Lozinka mora sadržavati minimalno 6 znakova');
     }
 
-    async goto(url: string) {
-        await navigateTo(this.page, url);
+    async loginWithValidCredentials(validEmail: string, validPassword: string) {
+        await this.avatarIcon.waitFor({ state: 'visible' });
+        await this.avatarIcon.click();
+        await this.emailField.fill(validEmail);
+        await this.passwordField.fill(validPassword);
+        await this.continueButton.click();
     }
 
     async assertLoginIsSuccessful() {
@@ -37,7 +43,6 @@ export class LoginPage {
     }
 
     async enterWrongCredentials() {
-        await this.avatarIcon.waitFor({ state: 'visible' });
         await this.avatarIcon.click();
         await this.emailField.fill(process.env.INVALID_EMAIL || '');
         await this.passwordField.fill(process.env.INVALID_EMAIL || '');
@@ -49,7 +54,6 @@ export class LoginPage {
     }
 
     async loginWithoutCredentials() {
-        await this.avatarIcon.waitFor({ state: 'visible' });
         await this.avatarIcon.click();
         await this.continueButton.click();
     }
@@ -59,10 +63,11 @@ export class LoginPage {
         await expect(this.emptyPasswordError).toBeVisible();
     }
 
-    async logoutUser(){
-        await this.avatarIcon.waitFor({ state: 'visible'});
-        await this.avatarIcon.click();
+    async logoutUser() {
+        await this.userAvatarIcon.click();
         await this.logoutButton.click();
     }
 
 }
+
+export default LoginPage;

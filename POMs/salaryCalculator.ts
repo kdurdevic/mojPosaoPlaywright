@@ -1,12 +1,12 @@
 import { expect, Locator, Page } from "@playwright/test";
-import { navigateTo } from "../utils/navigation";
+//import { navigateTo } from "../utils/navigation";
 
 export class SalaryCalculatorPage {
     readonly page: Page;
     readonly salaryCalculatorLink: Locator;
     readonly amountField: Locator;
     readonly locationDropDown: Locator;
-    readonly osijekLocation: Locator;
+    readonly wantedLocation: Locator;
     readonly locationShown: Locator;
     readonly numberOfKidsField: Locator;
     readonly numberOfDependents: Locator;
@@ -21,7 +21,7 @@ export class SalaryCalculatorPage {
         this.salaryCalculatorLink = page.locator('[data-test="HEADER_WIDGETS.MONEY_TOOLS"]');
         this.amountField = page.locator('.mp-combobox input[type="number"]').nth(0);
         this.locationDropDown = page.locator('input.selectable__input').nth(2);
-        this.osijekLocation = page.locator('li.options__item--pointed[data-test="Osijek (20.00% / 30.00%)"]');
+        this.wantedLocation = page.locator('li.options__item--pointed[data-test="Osijek (20.00% / 30.00%)"]');
         this.locationShown = page.locator('.mp-combobox .selectable__text', { hasText: 'Osijek (20.00% / 30.00%)' });
         this.numberOfKidsField = page.locator('.mp-combobox input[type="number"]').nth(1);
         this.numberOfDependents = page.locator('.mp-combobox input[type="number"]').nth(2);
@@ -32,12 +32,7 @@ export class SalaryCalculatorPage {
         this.calculatedGrossSalary = page.getByRole('heading', { name: '1.875,00 €' });
     }
 
-    async goto(url: string) {
-        await navigateTo(this.page, url);
-    }
-
     async goToSalaryCalculator() {
-        await this.salaryCalculatorLink.waitFor({ state: 'visible' });
         await this.salaryCalculatorLink.click();
     }
 
@@ -53,9 +48,9 @@ export class SalaryCalculatorPage {
         await this.amountField.fill(grossSalary);
     }
 
-    async selectLocationInDropDownMenu(osijekOption: string) {
-        await this.locationDropDown.fill(osijekOption);
-        await this.osijekLocation.click();
+    async selectLocationInDropDownMenu(specificLocation: string) { 
+        await this.locationDropDown.fill(specificLocation);
+        await this.wantedLocation.click();
     }
 
     async assertCorrectLocationIsShown() {

@@ -19,6 +19,8 @@ export default defineConfig({
     storageState: fs.existsSync(storageStatePath) ? storageStatePath : undefined,
     headless: true,
     trace: 'on-first-retry',
+    actionTimeout: 15000,
+    navigationTimeout: 15000,
   },
 
   projects: [
