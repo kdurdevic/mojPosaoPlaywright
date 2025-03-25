@@ -31,7 +31,7 @@ async function globalSetup(config: FullConfig) {
     await passwordField.fill(password);
     await loginButton.click();
 
-    await page.waitForSelector('img[alt="avatar-site"]', { timeout: 10000 });
+    await page.waitForSelector('img[alt="avatar-site"]');
 
     const storagePath = path.resolve(__dirname, 'auth');
     try {
