@@ -1,31 +1,38 @@
 import { test } from '@playwright/test';
 import { LoginPage } from '../POMs/login';
-import { LoginEnvironments } from '../environments/loginEnvironments';
 
-test.beforeEach(async({ page }) => {
+test.beforeEach(async ({ page }) => {
     await page.goto('/');
 });
 
-
-test('Successful login', async({ page }) => {
+test('Successful login', async ({ page }) => {
     const loginPage = new LoginPage(page);
-    const loginEnvironments = new LoginEnvironments(page);
-    
-    await loginPage.loginWithValidCredentials(loginEnvironments.validEmail, loginEnvironments.validPassword);
-    await loginPage.assertLoginIsSuccessful(); 
+
+    await loginPage.assertLoginIsSuccessful();
 });
 
-test('Wrong credentials entered', async({ page }) => {
+test('Wrong credentials entered', async ({ page }) => {
     const loginPage = new LoginPage(page);
-    const loginEnvironments = new LoginEnvironments(page);
-    
-    await loginPage.enterWrongCredentials(loginEnvironments.invalidEmail, loginEnvironments.invalidPassword);
+
+    // given I am not logged in
+    await loginPage.logoutUser();
+
+    //when I enter wrong credentials
+    await loginPage.enterWrongCredentials();
+
+    // then error message is shown 
     await loginPage.assertWrongCredentialsErrorIsDisplayed();
 });
 
-test('Empty fields error', async({ page }) => {
+test('Empty fields error', async ({ page }) => {
     const loginPage = new LoginPage(page);
-        
+
+    // given I am not logged in 
+    await loginPage.logoutUser();
+
+    //when I try to login without credentials
     await loginPage.loginWithoutCredentials();
+
+    // them empty field errors are shown
     await loginPage.assertEmptyFieldErrorsShown();
 });
