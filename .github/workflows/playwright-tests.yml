@@ -7,7 +7,7 @@ on:
     branches: [main, master]
   schedule:
     - cron: '0 23 * * 1-5'
-  workflow_dispatch: # Omogućava ručno pokretanje
+  workflow_dispatch: # manually running tests
 
 jobs:
   test:
@@ -36,7 +36,15 @@ jobs:
         run: npx playwright install --with-deps
 
       - name: Run Playwright tests
-        run: npx playwright test
+        env:
+          VALID_EMAIL: ${{ secrets.VALID_EMAIL }}
+          VALID_PASSWORD: ${{ secrets.VALID_PASSWORD }}
+          INVALID_EMAIL: ${{ secrets.INVALID_EMAIL }}
+          INVALID_PASSWORD: ${{ secrets.INVALID_PASSWORD }}
+        run: |
+          # Use the secrets in your Playwright tests
+          echo "Running Playwright tests with secrets"
+          npx playwright test
 
       - name: Upload Playwright report
         uses: actions/upload-artifact@v4
