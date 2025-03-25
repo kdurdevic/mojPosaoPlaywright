@@ -11,12 +11,11 @@ async function globalSetup(config: FullConfig) {
     const context = await browser.newContext();
     const page = await context.newPage();
 
-    await page.goto('https://mojposao.hr/', { waitUntil: 'domcontentloaded' });
+    await page.goto('https://mojposao.hr/');
 
-    await page.waitForTimeout(2000);
     const acceptCookiesButton = page.locator('text=Prihvati');
-    await acceptCookiesButton.waitFor({ state: 'visible', timeout: 8000 });
-    await acceptCookiesButton.click({ timeout: 8000 });
+
+    await acceptCookiesButton.click();
     await page.waitForLoadState('networkidle');
 
     const username = process.env.VALID_EMAIL || '';
@@ -32,7 +31,7 @@ async function globalSetup(config: FullConfig) {
     await passwordField.fill(password);
     await loginButton.click();
 
-    await page.waitForSelector('img[alt="avatar-site"]', { timeout: 10000 });
+    await page.waitForSelector('img[alt="avatar-site"]');
 
     const storagePath = path.resolve(__dirname, 'auth');
     try {
